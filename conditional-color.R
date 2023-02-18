@@ -15,7 +15,6 @@ coldefs <- list(
   colDef(style = stylefunc)
 )
 
-
 # get names of selected cols
 cols <- iris[,-c(1,5)] %>% colnames()
 # replicate list to required length
@@ -26,3 +25,16 @@ names(coldefs) <- cols
 # create table
 reactable(iris,
           columns = coldefs)
+
+# ADDED FREEZE PANES (Sticky Column)
+
+# create new list for specific column
+coldefs2 <- list(Sepal.Length = colDef(sticky = "left"))
+# add to previous list (coldefs)
+coldefs_mix <- append(coldefs, coldefs2)
+
+# create table 2
+reactable(iris,
+          columns = coldefs_mix)
+
+
